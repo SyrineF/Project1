@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import SingleToDo from "./SingleToDo";
+import { v4 as uuidv4 } from 'uuid';
+
 
 function ToDoList() {
   const todoList = [
@@ -7,19 +9,46 @@ function ToDoList() {
     { id: 2, task: "sleep" },
     { id: 3, task: "work" },
   ];
-
+  const [Todos,setTodos]=useState(todoList);
+  const [task,setTask]=useState("");
+  
+  const handleChange= (e) => {
+    setTask(e.target.value)
+  }
+  const handleAdd= () => {
+      const newTodos = Todos.concat({task, id: uuidv4()});
+      setTodos(newTodos);
+      setTask('');
+}
   return (
-      <div>
-          {
+      <div className="container">
+          <h1>My ToDo List</h1>
+          <div className="col-12 m-4">
+              <form className="row">
+                  <input
+                  className="mr-4"
+                  placeholder="add a new task"
+                  value={task}
+                  onChange={handleChange}
+                  />
+                  <button onClick={handleAdd}>
+                    Add
+                  </button>
+              </form>
+          </div>
+         <div>
+         {
               todoList.map((td)=>{
                   return(
                       <div className="col-12" key={td.id}>
                           <SingleToDo data={td}/>
+                          <hr/>
                       </div>
 
                   );
               })
           }
+         </div>
       </div>
 
   );
