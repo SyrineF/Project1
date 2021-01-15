@@ -21,9 +21,11 @@ function ToDoList() {
     console.log(todos);
     setTask("");
   };
-  const deleteHandler = (e) => {
-    e.preventDefault();
-    alert("clicked from ToDoList Component !");
+  const deleteHandler = (id) => {
+    console.log(id);
+
+    const items = todos.filter((todo) => todo.id !== id);
+    setTodos(items);
   };
   return (
     <div className="container justify-content-center">
@@ -31,12 +33,14 @@ function ToDoList() {
       <div className="col-12 m-4">
         <form className="row">
           <input
-            className="mr-4"
+            className="mr-4 "
             placeholder="add a new task"
             value={task}
             onChange={handleChange}
           />
-          <button onClick={handleAdd}>Add</button>
+          <button className="btn btn-outline-success" onClick={handleAdd}>
+            Add
+          </button>
         </form>
       </div>
       <div>

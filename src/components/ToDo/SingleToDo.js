@@ -5,10 +5,18 @@ function SingleToDo(props) {
   const { id, task } = props.data;
   return (
     <div className="container">
-      <div className="row background">
-        <h4 className="mr-4">task number : {id}</h4>
+      <div className="row background justify-content-between">
+        <p>id: {id}</p>
         <h4>{task}</h4>
-        <button onClick={props.click}>delete Task</button>
+        <button
+          className="btn btn-danger"
+          onClick={(e) => {
+            e.preventDefault();
+            props.click(id);
+          }}
+        >
+          delete Task
+        </button>
       </div>
     </div>
   );
