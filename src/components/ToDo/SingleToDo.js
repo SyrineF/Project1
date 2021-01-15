@@ -4,7 +4,7 @@ import "./styles/ToDoList.css";
 function SingleToDo(props) {
   const [details, setDetails] = useState(false);
   const { id, task, from, to } = props.data;
-
+  const [CurrentTask, setCurrentTask] = useState({});
   const detailshandler = () => {
     setDetails(!details);
   };
@@ -30,7 +30,11 @@ function SingleToDo(props) {
       {details && (
         <div className="container">
           <form className="row justify-content-between">
-            <input type="text" value={id} />
+            <input
+              type="text"
+              value={id}
+              onChange={(e) => setCurrentTask({ ...CurrentTask, id: id })}
+            />
             <input type="text" value={task} />
             <input type="text" value={from} />
             <input type="text" value={to} />
