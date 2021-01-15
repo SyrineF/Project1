@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleToDo from "./SingleToDo";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as v4 } from "uuid";
 
 function ToDoList() {
   const todoList = [
-    { id: 1, task: "eat", from: "10am", to: "11am" },
-    { id: 2, task: "sleep", from: "9am", to: "10am" },
-    { id: 3, task: "work", from: "7am", to: "9am" },
+    { id: v4(), task: "eat", from: "10am", to: "11am" },
+    { id: v4(), task: "sleep", from: "9am", to: "10am" },
+    { id: v4(), task: "work", from: "7am", to: "9am" },
   ];
   const [todos, setTodos] = useState(todoList);
   const [task, setTask] = useState("");
@@ -20,7 +20,7 @@ function ToDoList() {
   const handleAdd = (e) => {
     e.preventDefault();
     console.log(task);
-    const newTask = { id: uuidv4(), task: task, from: from, to: to };
+    const newTask = { id: v4(), task: task, from: from, to: to };
     setTodos([...todos, newTask]);
     console.log(todos);
     setTask("");
@@ -28,11 +28,18 @@ function ToDoList() {
     setTo("");
   };
   const deleteHandler = (id) => {
-    console.log(id);
-
     const items = todos.filter((todo) => todo.id !== id);
     setTodos(items);
   };
+  const handleUpdate = (CurrentTask, index) => {
+    const items = [...todos];
+    items[index] = CurrentTask;
+    console.log(items);
+    setTodos(items);
+  };
+  useEffect(() => {
+    console.log("item changed");
+  }, [todos]);
   return (
     <div className="container justify-content-center">
       <h1>My ToDo List</h1>
@@ -68,10 +75,15 @@ function ToDoList() {
         </form>
       </div>
       <div>
-        {todos.map((td) => {
+        {todos.map((td, index) => {
           return (
             <div className="col-12" key={td.id}>
-              <SingleToDo data={td} click={deleteHandler} />
+              <SingleToDo
+                data={td}
+                click={deleteHandler}
+                update={handleUpdate}
+                index={index}
+              />
               <hr />
             </div>
           );
