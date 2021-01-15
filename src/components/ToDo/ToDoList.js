@@ -24,6 +24,10 @@ function ToDoList() {
 
     setTask("");
   };
+  const deleteHandler = (e) => {
+    e.preventDefault();
+    alert("clicked from ToDoList Component !");
+  };
   return (
     <div className="container">
       <h1>My ToDo List</h1>
@@ -42,7 +46,7 @@ function ToDoList() {
         {todos.map((td) => {
           return (
             <div className="col-12" key={td.id}>
-              <SingleToDo data={td} />
+              <SingleToDo data={td} click={deleteHandler} />
               <hr />
             </div>
           );
