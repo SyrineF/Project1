@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import SingleToDo from "./SingleToDo";
-import { v4 as v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 function ToDoList() {
   const todoList = [
-    { id: v4(), task: "eat", from: "10am", to: "11am" },
-    { id: v4(), task: "sleep", from: "9am", to: "10am" },
-    { id: v4(), task: "work", from: "7am", to: "9am" },
+    { id: uuidv4(), task: "eat", from: "10am", to: "11am" },
+    { id: uuidv4(), task: "sleep", from: "9am", to: "10am" },
+    { id: uuidv4(), task: "work", from: "7am", to: "9am" },
   ];
   const [todos, setTodos] = useState(todoList);
   const [task, setTask] = useState("");
@@ -20,7 +20,7 @@ function ToDoList() {
   const handleAdd = (e) => {
     e.preventDefault();
     console.log(task);
-    const newTask = { id: v4(), task: task, from: from, to: to };
+    const newTask = { id: uuidv4(), task: task, from: from, to: to };
     setTodos([...todos, newTask]);
     console.log(todos);
     setTask("");
