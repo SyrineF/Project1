@@ -1,11 +1,11 @@
 import React from 'react'
-import SingleToDo from "./SingleToDo"
+import ToDos from "./SingleToDo"
 
 function ToDoList() {
     return (
         <div>
             {
-                
+             ToDos.map()
 
             }
         </div>
