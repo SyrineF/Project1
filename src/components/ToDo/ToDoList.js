@@ -4,22 +4,28 @@ import { v4 as uuidv4 } from "uuid";
 
 function ToDoList() {
   const todoList = [
-    { id: 1, task: "eat", from: "10am", to:"11am" },
-    { id: 2, task: "sleep", from: "9am", to:"10am" },
-    { id: 3, task: "work", from: "7am", to:"9am" },
+    { id: 1, task: "eat", from: "10am", to: "11am" },
+    { id: 2, task: "sleep", from: "9am", to: "10am" },
+    { id: 3, task: "work", from: "7am", to: "9am" },
   ];
   const [todos, setTodos] = useState(todoList);
   const [task, setTask] = useState("");
-  const handleChange = (e) => {
-    setTask(e.target.value);
-  };
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  // const handleChange = (e) => {
+  //   setTask(e.target.value);
+  //   setFrom(e.target.value);
+  //   setTo(e.target.value);
+  // };
   const handleAdd = (e) => {
     e.preventDefault();
     console.log(task);
-    const newTask = { id: uuidv4(), task: task };
+    const newTask = { id: uuidv4(), task: task, from: from, to: to };
     setTodos([...todos, newTask]);
     console.log(todos);
     setTask("");
+    setFrom("");
+    setTo("");
   };
   const deleteHandler = (id) => {
     console.log(id);
@@ -36,7 +42,25 @@ function ToDoList() {
             className="mr-4 "
             placeholder="add a new task"
             value={task}
-            onChange={handleChange}
+            onChange={(e) => {
+              setTask(e.target.value);
+            }}
+          />
+          <input
+            className="mr-4 "
+            placeholder="from .."
+            value={from}
+            onChange={(e) => {
+              setFrom(e.target.value);
+            }}
+          />
+          <input
+            className="mr-4 "
+            placeholder="to .."
+            value={to}
+            onChange={(e) => {
+              setTo(e.target.value);
+            }}
           />
           <button className="btn btn-outline-success" onClick={handleAdd}>
             Add
