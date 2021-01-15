@@ -8,6 +8,7 @@ function SingleToDo(props) {
       <div className="row background justify-content-between">
         <p>id: {id}</p>
         <h4>{task}</h4>
+        <button className="btn btn-warning">Détails</button>
         <button
           className="btn btn-danger"
           onClick={(e) => {
