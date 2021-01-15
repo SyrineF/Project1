@@ -15,17 +15,14 @@ function ToDoList() {
   };
   const handleAdd = (e) => {
     e.preventDefault();
-    // const newTodos = Todos.concat({ task, id: uuidv4() });
-    // setTodos(newTodos);
     console.log(task);
     const newTask = { id: uuidv4(), task: task };
     setTodos([...todos, newTask]);
     console.log(todos);
-
     setTask("");
   };
   return (
-    <div className="container">
+    <div className="container justify-content-center">
       <h1>My ToDo List</h1>
       <div className="col-12 m-4">
         <form className="row">
