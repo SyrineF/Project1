@@ -16,7 +16,8 @@ function SingleToDo(props) {
   return (
     <div className="container">
       <div className="row background justify-content-between">
-        <p>id: {id}</p>
+        <p>id: {props.index}</p>
+        {/* ritha index chneya ya cyr ? */}
         <h4>{task}</h4>
         <button className="btn btn-warning" onClick={detailshandler}>
           Détails
