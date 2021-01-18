@@ -4,7 +4,12 @@ import "./styles/ToDoList.css";
 function SingleToDo(props) {
   const [details, setDetails] = useState(false);
   const { id, task, from, to } = props.data;
-  const [CurrentTask, setCurrentTask] = useState({});
+  const [CurrentTask, setCurrentTask] = useState({
+    id: id,
+    task: task,
+    from: from,
+    to: to,
+  });
   const detailshandler = () => {
     setDetails(!details);
   };
@@ -35,10 +40,37 @@ function SingleToDo(props) {
               value={id}
               onChange={(e) => setCurrentTask({ ...CurrentTask, id: id })}
             />
-            <input type="text" value={task} />
-            <input type="text" value={from} />
-            <input type="text" value={to} />
-            <button className="btn btn-outline-primary">Update</button>
+            <input
+              type="text"
+              value={CurrentTask.task}
+              onChange={(e) =>
+                setCurrentTask({ ...CurrentTask, task: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              value={CurrentTask.from}
+              onChange={(e) =>
+                setCurrentTask({ ...CurrentTask, from: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              value={CurrentTask.to}
+              onChange={(e) =>
+                setCurrentTask({ ...CurrentTask, to: e.target.value })
+              }
+            />
+            <button
+              className="btn btn-outline-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                setDetails(false);
+                props.update(CurrentTask, props.index);
+              }}
+            >
+              Update
+            </button>
           </form>
         </div>
       )}
