@@ -53,25 +53,28 @@ function Carousel() {
         <div className="col-8 ">
           <div className="img-container">
             <img className="img-fluid" src={current.image} />
+            <div className="row justify-content-center">
             {imageData.map((d, index) => {
               return (
-                <span key={d.id} className="d-flex flex-row align-self-end">
+                <span key={d.id} >
                   <i
                     className={
                       index === compteur
-                        ? "fa fa-circle text-primary"
-                        : "fa fa-circle"
+                        ? "fa fa-circle text-primary m-2"
+                        : "fa fa-circle m-2"
                     }
                     aria-hidden="true"
                     onClick={() => {
                       setCompteur(index);
                     }}
                   >
-                    {index}
+                    {/* {index} */}
                   </i>
                 </span>
               );
             })}
+            </div>
+      
           </div>
         </div>
         <div className="col-2 ml-4 pl-4">
