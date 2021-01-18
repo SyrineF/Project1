@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 
 function ToDoList() {
   const todoList = [
-    { id: 1, task: "eat", from: "10am", to: "11am" },
-    { id: 2, task: "sleep", from: "9am", to: "10am" },
-    { id: 3, task: "work", from: "7am", to: "9am" },
+    { id: uuidv4(), task: "eat", from: "10am", to: "11am" },
+    { id: uuidv4(), task: "sleep", from: "9am", to: "10am" },
+    { id: uuidv4(), task: "work", from: "7am", to: "9am" },
   ];
   const [todos, setTodos] = useState(todoList);
   const [task, setTask] = useState("");
