@@ -60,7 +60,7 @@ function Carousel() {
                   <i
                     className={
                       index === compteur
-                        ? "fa fa-circle text-primary m-2"
+                        ? "fa fa-circle text-danger m-2"
                         : "fa fa-circle m-2"
                     }
                     aria-hidden="true"
